@@ -34,14 +34,20 @@ def convert_date_single(x):
     return datetime.fromtimestamp(x)
 
 def plot_ts(X):
-    fig = plt.figure(figsize=(10, 4))
+    fig = plt.figure(figsize=(30, 6))
     ax = fig.add_subplot(111)
     
-    plt.plot(X)
+    t = range(len(X))
+    plt.plot(t, X)
     
-    plt.title('NYC Taxi Demand')
-    plt.ylabel('# passengers')
-    plt.xlabel('Index')
+    plt.title('NYC Taxi Demand', size=34)
+    plt.ylabel('# passengers', size=30)
+    plt.xlabel('Time', size=30)
+    plt.xticks(size=26)
+    plt.yticks(size=26)
+    
+    plt.xlim([t[0], t[-1]])
+
 
 def plot(dfs, anomalies=[]):
     """ Line plot for time series.
@@ -67,7 +73,7 @@ def plot(dfs, anomalies=[]):
 
     month_fmt = mdates.DateFormatter('%b')
 
-    fig = plt.figure(figsize=(10, 4))
+    fig = plt.figure(figsize=(30, 6))
     ax = fig.add_subplot(111)
 
     for df in dfs:
@@ -82,9 +88,12 @@ def plot(dfs, anomalies=[]):
             t2 = convert_date_single(anom[1])
             plt.axvspan(t1, t2, color='red', alpha=0.2)
 
-    plt.title('NYC Taxi Demand')
-    plt.ylabel('# passengers')
-    plt.xlabel('Time')
+    plt.title('NYC Taxi Demand', size=34)
+    plt.ylabel('# passengers', size=30)
+    plt.xlabel('Time', size=30)
+    plt.xticks(size=26)
+    plt.yticks(size=26)
+    plt.xlim([time[0], time[-1]])
 
     # format xticks
     ax.xaxis.set_major_locator(months)
